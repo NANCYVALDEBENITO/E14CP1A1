@@ -3,7 +3,34 @@
 <p>
   <strong>Name:</strong>
   <%= @category.name %>
+  
 </p>
+
+<%= form_with(model: [ @category, @product ]) do |form| %>
+   	<%= form.label :name, "Nombre" %>
+ 	<%= form.text_field :name %>
+ 	<%= form.label :price, "Precio" %>
+ 	<%= form.text_field :price %>
+ 	<%= form.submit "Enviar" %>
+ <% end %>
+<table>
+	<tr>
+		<th>Nombre</th>
+		<th>Producto</th>
+	</tr>
+	<% @category.products.each do |product| %>
+	
+	<tr> 
+		<td><%= product.name %> </td>
+		<td><%= product.price %> </td>
+		<td><%= link_to 'Delete', method: :delete  %></td>
+	</tr>
+
+	<% end %>
+		
+</table>
+
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
+
